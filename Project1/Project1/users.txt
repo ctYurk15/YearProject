@@ -1,0 +1,5 @@
+4
+ctyurk15 Yura Hrytsak Ihor 9087 KNMS22 83 1 0 1 1 0 1
+WenkWelk Wenk Welk Anton 8787 MKMS19 78 1 0 1 0 0 0
+WenkWelk1 Wenk Welk Anton 8787 MKMS19 78 1 0 1 0 0 0
+1 2 3 4 5 6 7 1 1 1 1 1 0
