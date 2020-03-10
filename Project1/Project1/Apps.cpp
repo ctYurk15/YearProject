@@ -49,6 +49,8 @@ void Apps::ReadUsers(vector<User>& users, string way)
 	bool admin = false;
 	bool lessons[5] = { false, false, false, false, false };
 
+	std::vector<string>::iterator it;
+
 	fin >> size;
 	for (int i = 0; i < size; i++)
 	{
@@ -60,6 +62,12 @@ void Apps::ReadUsers(vector<User>& users, string way)
 		}
 		fin >> admin;
 		users.push_back(User(login, name, surname, fatherName, pass, group, avarageNumber, lessons, admin));
+		
+		if (find(groups.begin(), groups.end(), group) == groups.end()) // if group isn`t pushed now
+		{
+			groups.push_back(group);
+		} 
+
 	}
 
 	fin.close();
@@ -202,19 +210,44 @@ void Apps::DisplayUsersFromGroup(vector<User> users, string group, bool admin)
 
 void Apps::DisplayUsersByLesson(vector<User> users, int lesson, bool admin)
 {
-	cout << "Users for lesson " << nameLessons[lesson] << ":" << endl;
-
-	for (int i = 0; i < users.size(); i++)
+	if (studentsToLessons[lesson] <= 15) // if enought place for all
 	{
-		if (users[i].getLesson(lesson))
+		cout << "Users for lesson " << nameLessons[lesson] << ":" << endl;
+		//displaying
+		for (int i = 0; i < users.size(); i++)
 		{
-			users[i].Disp(admin);
-			cout << endl;
+			if (users[i].getLesson(lesson))
+			{
+				users[i].Disp(admin);
+				cout << endl;
+			}
+
+		}
+	}
+	else // if students more then 15
+	{
+		cout << "15 best users for " << nameLessons[lesson] << ":\n";
+		SortByNumber(users);
+
+		int i = 0;
+		
+		for (int j = users.size() - 1; j >= 0 && i < 15; j--)
+		{
+			if (users[j].getLesson(lesson))
+			{
+				users[j].Disp(admin);
+				cout << endl;
+				i++;
+			}
 		}
 
 	}
 
-	cout << "Total: " << studentsToLessons[lesson] << " student(s)";
+	
+
+	
+
+	cout << "Total: " << studentsToLessons[lesson] << " student(s)" << endl;
 }
 
 void Apps::GetUserByNickName(vector<User> users, string login, bool admin)
@@ -267,6 +300,61 @@ void Apps::SortByNumber(vector<User>& users)
 	cout << "Success!" << endl;
 	delete arr;
 	
+}
+
+void Apps::SortByName(vector<User>& users)
+{
+	string *names = new string[users.size()]; // array of names
+	vector<User> usersCopy; // for-time vector
+
+	for (int i = 0; i < users.size(); i++) //initialize names
+	{
+		names[i] = users[i].GetFullName();
+	}
+
+	sort(names, names + users.size()); // sorting names
+
+	for (int i = 0; i < users.size(); i++) // filling copy
+	{
+		for (int j = 0; j < users.size(); j++)
+		{
+			if (users[j].GetFullName() == names[i])
+			{
+				usersCopy.push_back(users[j]);
+				break;
+			}
+		}
+	}
+
+	users = usersCopy;
+	
+}
+
+void Apps::SortByGroups(vector<User>& users)
+{
+	string *groupsArr = new string[groups.size()]; // temporary arr
+	vector<User> usersCopy; // for-time vector
+
+	for (int i = 0; i < groups.size(); i++)
+	{
+		groupsArr[i] = groups[i];
+	}
+
+	sort(groupsArr, groupsArr + groups.size()); // sorting groups
+
+	for (int i = 0; i < groups.size(); i++)
+	{
+		for (int j = 0; j < users.size(); j++)
+		{
+			if (users[j].GetGroup() == groupsArr[i])
+			{
+				usersCopy.push_back(users[j]);
+				
+			}
+		}
+	}
+
+	users = usersCopy;
 }
 
 Apps::~Apps()

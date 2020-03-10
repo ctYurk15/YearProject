@@ -9,6 +9,10 @@ using namespace std;
 class Apps
 {
 public:
+	//vars
+	vector<string> groups;
+
+	//functions:
 	Apps();
 	void Commands(bool);
 	void DispUsers(vector<User>, bool);
@@ -26,6 +30,8 @@ public:
 
 	//sorting
 	void SortByNumber(vector<User>&);
+	void SortByName(vector<User>&);
+	void SortByGroups(vector<User>&);
 	~Apps();
 };
 

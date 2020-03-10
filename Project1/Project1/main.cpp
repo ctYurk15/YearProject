@@ -163,6 +163,14 @@ int main()
 				{
 					systemApp.SortByNumber(userList);
 				}
+				else if (command == "/sortByNames")
+				{
+					systemApp.SortByName(userList);
+				}
+				else if (command == "/sortByGroups")
+				{
+					systemApp.SortByGroups(userList);
+				}
 				else
 				{
 					cout << "What? Use /info to get commands list" << endl;

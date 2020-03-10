@@ -1,12 +1,18 @@
 ﻿  Apps.cpp
 c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(33): warning C4018: '<': signed/unsigned mismatch
-c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(76): warning C4018: '<': signed/unsigned mismatch
-c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(172): warning C4018: '<=': signed/unsigned mismatch
-c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(194): warning C4018: '<': signed/unsigned mismatch
-c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(207): warning C4018: '<': signed/unsigned mismatch
-c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(224): warning C4018: '<': signed/unsigned mismatch
-c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(243): warning C4018: '<': signed/unsigned mismatch
-c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(253): warning C4018: '<': signed/unsigned mismatch
-c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(255): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(84): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(180): warning C4018: '<=': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(202): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(217): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(257): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(276): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(286): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(288): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(310): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(317): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(319): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(338): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(345): warning C4018: '<': signed/unsigned mismatch
+c:\users\юра\documents\safe\c++\курсач2курс\project1\project1\apps.cpp(347): warning C4018: '<': signed/unsigned mismatch
   Project1.vcxproj -> C:\Users\Юра\Documents\safe\c++\курсач2курс\Project1\Debug\Project1.exe

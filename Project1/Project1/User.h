@@ -24,6 +24,7 @@ public:
 	string GetName(int);
 	string GetPass();
 	string GetGroup();
+	string GetFullName();
 	float getAvarageNumber();
 	bool getLesson(int);
 	void SetLogin(string);

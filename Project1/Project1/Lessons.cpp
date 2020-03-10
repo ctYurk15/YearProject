@@ -20,5 +20,5 @@ Bitcoin Oleh Tsykajlo Roman #j0@N3r! KNMS31 87 0 0 1 1 1 0
 MusicainBit Nazar Kurylo Bodja bitMakerNoParty FKMS22 67 0 0 0 1 0 0
 SourceDovid Olja Oleksiv Oleh pidkatTop47 KNMS32 97 1 1 1 1 1 0
 LevGenetic Lev Zykol Roman networker KNMS41 87 0 0 1 1 0 0
-MetalHead Stepan HrinJohoZnaje Ostap dugdudiusd FKMS31 1 0 0 1 0 0
+MetalHead Stepan Pauk Ostap dugdudiusd FKMS31 1 0 0 1 0 0
 */

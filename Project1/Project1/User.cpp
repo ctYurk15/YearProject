@@ -68,6 +68,11 @@ string User::GetGroup()
 	return group;
 }
 
+string User::GetFullName()
+{
+	return (name + surname + fatherName);
+}
+
 float User::getAvarageNumber()
 {
 	return avarageNumber;
