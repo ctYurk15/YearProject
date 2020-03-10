@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Lessons.h"
 
 using namespace std;
 
@@ -16,7 +17,6 @@ private:
 	bool goingLessons[5];
 	bool admin = false;
 public:
-	string nameLessons[5] = { "Math", "Science", "Programming", "English", "DataBase" };
 	User();
 	User(string _login, string _name, string _surname, string _fatherName, string _pass, string _group, float _avarageNumb, bool lessons[5], bool _admin);
 	void Disp(bool);

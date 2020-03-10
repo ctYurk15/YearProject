@@ -11,149 +11,16 @@
 
 using namespace std;
 
-//string nameLessons[5] = { "Math", "Science", "Programming", "English", "DataBase" };
-
-void ReadUsers(vector<User> &users, string way)
-{
-	ifstream fin;
-	fin.open(way);
-
-	//fortime vals
-	int size = 0;
-	string login = " ", name = " ", surname = " ", fatherName = " ", pass = " ", group = " ";
-	float avarageNumber = 0;
-	bool admin = false;
-	bool lessons[5] = { false, false, false, false, false };
-
-	fin >> size;
-	for (int i = 0; i < size; i++)
-	{
-		fin >> login >> name >> surname >> fatherName >> pass >> group >> avarageNumber;
-		for (int i = 0; i < 5; i++)
-		{
-			fin >> lessons[i];
-			if (lessons[i]) studentsToLessons[i]++;
-		}
-		fin >> admin;
-		users.push_back(User(login, name, surname, fatherName, pass, group, avarageNumber, lessons, admin));
-	}
-
-	for (int i = 0; i < 5; i++)
-	{
-		cout << studentsToLessons[i] << endl;
-	}
-
-	fin.close();
-}
-
-void WriteUsers(vector<User> users, string way)
-{
-	ofstream fout;
-	fout.open(way);
-
-	fout << users.size() << endl; // writing size
-
-	for (int i = 0; i < users.size(); i++)
-	{
-		fout << users[i].GetLogin() << " "; // writing login
-		
-		for (int j = 0; j < 3; j++) //writing name
-		{
-			fout << users[i].GetName(j) << " ";
-		}
-
-		fout << users[i].GetPass() << " " << users[i].GetGroup() << " "; // writing password and group
-
-		fout << users[i].getAvarageNumber() << " "; // writing avarage number
-
-		for (int j = 0; j < 5; j++) // writing lessons
-		{
-			fout << users[i].getLesson(j) << " ";
-		}
-
-		fout << users[i].isAdmin() << endl;
-	}
-
-	fout.close();
-}
-
-void AddUser(vector<User> &users)
-{
-	//temporary vars
-	string login = " ";
-	string name = " ";
-	string surname = " ";
-	string fatherName = " ";
-	string pass = " ";
-	string group = " ";
-	float avarageNumber = 0;
-	bool goingLessons[5];
-	bool admin = false;
-
-	//helpful vars
-	
-
-	//process of adding
-	cout << "Login: ";
-	cin >> login;
-	cout << "Log name, surname and fathername: ";
-	cin >> name >> surname >> fatherName;
-	cout << "Password: ";
-	cin >> pass;
-	cout << "Group: ";
-	cin >> group;
-	cout << "Avarage number: ";
-	cin >> avarageNumber;
-	for (int i = 0; i < 5; i++)
-	{
-		string boolString = " ";
-		
-		while (boolString != "yes" && boolString != "no")
-		{
-			cout << users[0].nameLessons[i] << "(yes or no): ";
-			cin >> boolString;
-		}
-
-		if (boolString == "yes") goingLessons[i] = true;
-		else goingLessons[i] = false;
-	}
-
-	
-	string boolString = " ";
-
-	while (boolString != "yes" && boolString != "no")
-	{
-		cout << "Admin(yes or no): ";
-		cin >> boolString;
-	}
-
-	if (boolString == "yes") admin = true;
-	else admin = false;
-
-	//confirmation
-	boolString = " ";
-
-	while (boolString != "yes" && boolString != "no")
-	{
-		cout << "Are you sure(yes or no): ";
-		cin >> boolString;
-	}
-
-	if (boolString == "yes") users.push_back(User(login, name, surname, fatherName, pass, group, avarageNumber, goingLessons, admin));
-
-}
-
 int main()
 {
 	//reading users
-	string way = "users.txt";
+	const string way = "users.txt";
 	vector<User> userList;
-	ReadUsers(userList, way);
+	Apps systemApp = Apps();
+	systemApp.ReadUsers(userList, way);
 	bool usingProgram = true;
 
 	string login = " ", pass = " ";
-
-	Apps systemApp = Apps();
 
 	while (usingProgram)
 	{
@@ -214,7 +81,7 @@ int main()
 				}
 				else if (command == "/profile") // look at your profile
 				{
-					userList[userIndex].Disp(userList[userIndex].isAdmin());
+					userList[userIndex].Disp(true); // for seeing your pass
 				}
 				else if (command == "/info") // info
 				{
@@ -255,46 +122,46 @@ int main()
 				}
 				else if (command == "/addUser") // adding user
 				{
-					if(userList[userIndex].isAdmin())AddUser(userList);
+					if(userList[userIndex].isAdmin())systemApp.AddUser(userList);
 					else cout << "You haven`t permisson for this action. " << endl;
 				}
 				else if (command == "/displayUsers") // display all users(if you`re admin, you`ll see their`s passwords)
 				{
-					for (int i = 0; i < userList.size(); i++)
-					{
-						userList[i].Disp(userList[userIndex].isAdmin());
-						cout << endl;
-					}
+					systemApp.DispUsers(userList, userList[userIndex].isAdmin());
 				}
 				else if (command == "/deleteUser") // deleting user
 				{
 					if (userList[userIndex].isAdmin())
 					{
-						int index = 0;
-						while (true)
-						{
-							cout << "Log number: ";
-							cin >> index;
-							if (index >= 0 && index <= userList.size()) break;
-							cout << "Incorrect number" << endl;
-						}
-						
-						vector<User>::iterator it = userList.begin();
-						for (int i = 0; i < index; i++)
-						{
-							it++;
-						}
-
-						//confirmation
-						boolString = " ";
-						while (boolString != "yes" && boolString != "no")
-						{
-							cout << "Are you sure(yes or no): ";
-							cin >> boolString;
-						}
-						if(boolString == "yes") userList.erase(it);
+						systemApp.DeleteUser(userList);
 					}
 					else cout << "You haven`t permisson for this action. " << endl;
+				}
+				else if (command == "/getUsersOfGroup")
+				{
+					cout << "Log group: ";
+					cin >> command;
+					systemApp.DisplayUsersFromGroup(userList, command, userList[userIndex].isAdmin());
+				}
+				else if(command == "/getUsersByLesson")
+				{
+					int numb = 0;
+					cout << "Log number of lesson: ";
+					cin >> numb;
+					if (numb >= 0 && numb <= 5)
+					{
+						systemApp.DisplayUsersByLesson(userList, numb, userList[userIndex].isAdmin());
+					}
+				}
+				else if (command == "/getUserByLogin")
+				{
+					cout << "Log login: ";
+					cin >> command;
+					systemApp.GetUserByNickName(userList, command, userList[userIndex].isAdmin());
+				}
+				else if (command == "/sortByAvarageNumber")
+				{
+					systemApp.SortByNumber(userList);
 				}
 				else
 				{
@@ -309,7 +176,7 @@ int main()
 		}
 	}
 	
-	WriteUsers(userList, way);
+	systemApp.WriteUsers(userList, way);
 	system("pause");
 	return 0;
 }
