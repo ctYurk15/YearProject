@@ -21,7 +21,7 @@ public:
 	void ReadUsers(vector<User>&, string);
 	void WriteUsers(vector<User>, string);
 	void AddUser(vector<User>&);
-	void DeleteUser(vector<User>&);
+	void DeleteUser(vector<User>&, string);
 
 	//searching
 	void DisplayUsersFromGroup(vector<User>, string, bool);
@@ -32,6 +32,8 @@ public:
 	void SortByNumber(vector<User>&);
 	void SortByName(vector<User>&);
 	void SortByGroups(vector<User>&);
+
+	float getInput();
 	~Apps();
 };
 

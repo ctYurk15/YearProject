@@ -131,7 +131,7 @@ void Apps::AddUser(vector<User>& users)
 	cout << "Group: ";
 	cin >> group;
 	cout << "Avarage number: ";
-	cin >> avarageNumber;
+	avarageNumber = getInput();
 	for (int i = 0; i < 5; i++)
 	{
 		string boolString = " ";
@@ -170,31 +170,45 @@ void Apps::AddUser(vector<User>& users)
 	if (boolString == "yes") users.push_back(User(login, name, surname, fatherName, pass, group, avarageNumber, goingLessons, admin));
 }
 
-void Apps::DeleteUser(vector<User>& userList)
+void Apps::DeleteUser(vector<User>& userList, string _login)
 {
-	int index = 0;
+	/*int index = 0;
 	while (true)
 	{
 		cout << "Log number: ";
 		cin >> index;
 		if (index >= 0 && index <= userList.size()) break;
 		cout << "Incorrect number" << endl;
-	}
+	}*/
 
+	bool found = false;
+
+	//searching for user with _login
 	vector<User>::iterator it = userList.begin();
-	for (int i = 0; i < index; i++)
+	for (int i = 0; i < userList.size(); i++)
 	{
 		it++;
+		if (userList[i].GetLogin() == _login)
+		{
+			found = true;
+			it--;
+			break;
+		}
 	}
 
 	//confirmation
-	string boolString = " ";
-	while (boolString != "yes" && boolString != "no")
+
+	if (found)
 	{
-		cout << "Are you sure(yes or no): ";
-		cin >> boolString;
+		string boolString = " ";
+		while (boolString != "yes" && boolString != "no")
+		{
+			cout << "Are you sure(yes or no): ";
+			cin >> boolString;
+		}
+		if (boolString == "yes") userList.erase(it);
 	}
-	if (boolString == "yes") userList.erase(it);
+	else cout << "We have not user with this login." << endl;
 }
 
 void Apps::DisplayUsersFromGroup(vector<User> users, string group, bool admin)
@@ -355,6 +369,29 @@ void Apps::SortByGroups(vector<User>& users)
 	}
 
 	users = usersCopy;
+}
+
+float Apps::getInput()
+{
+	float input = 0;
+
+	while (true)
+	{
+		cin >> input;
+
+		if (!cin)
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "That is not number. Log number. ";
+		}
+		else
+		{
+			break;
+		}
+	}
+
+	return input;
 }
 
 Apps::~Apps()

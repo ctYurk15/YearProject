@@ -1,6 +1,7 @@
 #include "User.h"
 #include "Lessons.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -83,20 +84,45 @@ bool User::getLesson(int i)
 	return goingLessons[i];
 }
 
-void User::SetLogin(string _login)
+void User::SetLogin(vector<User> users, string _login)
 {
-	login = _login;
+	bool found = false;
+	string boolString = " ";
+	for (int i = 0; i < users.size(); i++)
+	{
+		if (users[i].GetLogin() == _login)
+		{
+			found = true;
+			break;
+		}
+	}
+	if (!found)
+	{
+		while (boolString != "yes" && boolString != "no")
+		{
+			cout << "Are you sure?(yes or no): ";
+			cin >> boolString;
+		}
+		
+		if(boolString == "yes")login = _login;
+	}
+	else cout << "This login already exist. Choose another." << endl;
 }
 
 void User::SetLesson(int _lesson, bool _going)
 {
-	if (_lesson < 5)
+	if (_lesson < 5 && _lesson >= 0)
 	{
-		goingLessons[_lesson] = _going;
+		if (goingLessons[_lesson] != _going)
+		{
+			goingLessons[_lesson] = _going;
+			if (_going) studentsToLessons[_lesson]++;
+			else studentsToLessons[_lesson]--;
+		}
 	}
 	else
 	{
-		cout << "Too big number." << endl;
+		cout << "Too big or too small number. It have be from 0 to 4." << endl;
 	}
 }
 

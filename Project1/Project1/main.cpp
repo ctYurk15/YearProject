@@ -92,13 +92,16 @@ int main()
 					int _numb = 0;
 					bool _going = false;
 					cout << "Log number of lesson: ";
-					cin >> _numb;
+					_numb = systemApp.getInput();
 					cout << "Will you go or not(yes or no): ";
 					while (boolString != "yes" && boolString != "no")
 					{
 						cin >> boolString;
 					}
 					if (boolString == "yes") _going = true;
+					else _going = false;
+
+					boolString = " ";
 					
 					//confimation
 					while (boolString != "yes" && boolString != "no")
@@ -113,12 +116,7 @@ int main()
 				{
 					cout << "Log your new login: ";
 					cin >> command;
-					cout << "Do you realy whant to change your login(type yes, if yes): ";
-					cin >> boolString;
-					if (boolString == "yes")
-					{
-						userList[userIndex].SetLogin(command);
-					}
+					userList[userIndex].SetLogin(userList, command);
 				}
 				else if (command == "/addUser") // adding user
 				{
@@ -133,7 +131,9 @@ int main()
 				{
 					if (userList[userIndex].isAdmin())
 					{
-						systemApp.DeleteUser(userList);
+						cout << "Log login of user: ";
+						cin >> command;
+						systemApp.DeleteUser(userList, command);
 					}
 					else cout << "You haven`t permisson for this action. " << endl;
 				}
@@ -147,7 +147,7 @@ int main()
 				{
 					int numb = 0;
 					cout << "Log number of lesson: ";
-					cin >> numb;
+					numb = systemApp.getInput();
 					if (numb >= 0 && numb <= 5)
 					{
 						systemApp.DisplayUsersByLesson(userList, numb, userList[userIndex].isAdmin());

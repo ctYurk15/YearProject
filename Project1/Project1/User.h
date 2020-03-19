@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "Lessons.h"
 
 using namespace std;
@@ -27,7 +28,7 @@ public:
 	string GetFullName();
 	float getAvarageNumber();
 	bool getLesson(int);
-	void SetLogin(string);
+	void SetLogin(vector<User>, string);
 	void SetLesson(int, bool);
 	bool isAdmin();
 	~User();
