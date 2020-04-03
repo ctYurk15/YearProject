@@ -24,7 +24,6 @@ int main()
 
 	while (usingProgram)
 	{
-		cout << "Lessons v0.1\n";
 		cout << "Login: ";
 		cin >> login;
 

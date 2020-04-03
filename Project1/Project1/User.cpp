@@ -29,22 +29,31 @@ User::User(string _login, string _name, string _surname, string _fatherName, str
 
 void User::Disp(bool _admin)
 {
-	cout << "Login: " << login << "\nName: " << name << " " << surname << " " << fatherName << "\nGroup: " << group << "\nAvarage number: " << avarageNumber << endl;
-	if (_admin) cout << "Password: " << pass << endl;
- 
-	cout << "\nLessons:" << endl;
+	for (int i = 0; i < 25; i++) cout << '-';
+	cout << endl;
+	cout << "Login: " << login << endl;
+	cout << "Full name: " << name << " " << surname << " " << fatherName << endl;
+	cout << "Group: " << group << endl;
+	cout << "Avarage number: " << avarageNumber << endl;
+	if (admin) cout << "Password: " << pass << endl;
+	
+	//going lessson
 	for (int i = 0; i < 5; i++)
 	{
 		cout << nameLessons[i] << ": ";
-		if (goingLessons[i]) cout << "yes";
-		else cout << "no";
-		cout << endl;
+		if (goingLessons[i])
+		{
+			cout << "yes" << endl;
+		}
+		else
+		{
+			cout << "no" << endl;
+		}
 	}
 
-	cout << "\nRole: ";
-	if (admin) cout << " admin";
-	else cout << " user";
-	cout << endl;
+	cout << "Role: ";
+	if (admin) cout << "admin" << endl;
+	else cout << "user" << endl;
 }
 
 string User::GetLogin()

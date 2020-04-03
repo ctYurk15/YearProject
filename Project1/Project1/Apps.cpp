@@ -30,11 +30,182 @@ void Apps::Commands(bool isAdmin)
 
 void Apps::DispUsers(vector<User> users, bool admin)
 {
-	for (int i = 0; i < users.size(); i++)
+	/*for (int i = 0; i < users.size(); i++)
 	{
 		users[i].Disp(admin);
 		cout << endl;
+	}*/
+
+	int lineLenght = 0;
+	int loginMaxSize = 0;
+	int nameMaxSize = 0;
+	int groupMaxSize = 0;
+	int avarageNumberMaxSize = string("Avarage number:").size();
+	int passwordMaxSize = 0;
+	
+	//finding maxsizes
+	for (int i = 0; i < users.size(); i++)
+	{
+		//login
+		if (users[i].GetLogin().size() > loginMaxSize)
+		{
+			loginMaxSize = users[i].GetLogin().size();
+		}
+
+		//name
+		if (users[i].GetFullName().size() > nameMaxSize)
+		{
+			nameMaxSize = users[i].GetFullName().size();
+		}
+
+		//group
+		if (users[i].GetGroup().size() > groupMaxSize)
+		{
+			groupMaxSize = users[i].GetGroup().size();
+		}
+
+		//password
+		if (users[i].GetPass().size() > passwordMaxSize)
+		{
+			passwordMaxSize = users[i].GetPass().size();
+		}
 	}
+
+	lineLenght = loginMaxSize + nameMaxSize + groupMaxSize + avarageNumberMaxSize + passwordMaxSize + 8;
+
+	lineLenght += 10; // for role
+
+	for (int j = 0; j < 5; j++)
+	{
+		lineLenght += nameLessons[j].size();
+		lineLenght++;
+	}
+
+	//cout << loginMaxSize;
+	//cout << groupMaxSize;
+
+	for (int j = 0; j < lineLenght; j++) cout << '-';		// drawing
+	cout << endl;
+
+	cout << "Login:";
+	for (int i = 0; i < loginMaxSize - 6; i++) cout << ' ';
+	cout << '|';
+
+	cout << "Name:";
+	for (int i = 0; i < nameMaxSize - 3; i++) cout << ' ';
+	cout << '|';
+
+	cout << "Group:";
+	for (int i = 0; i < groupMaxSize - 7; i++) cout << ' ';
+	cout << '|';
+
+	cout << "Avarage number:|";
+
+	if (admin)
+	{
+		cout << "Pass:";
+		for (int i = 0; i < passwordMaxSize - 5; i++) cout << ' ';
+		cout << '|';
+	}
+
+	for (int j = 0; j < 5; j++)
+	{
+		cout << nameLessons[j] << ":" << '|';
+	}
+
+	cout << "Role:|";
+
+	cout << endl;
+
+	for (int i = 0; i < users.size(); i++)
+	{
+		for (int j = 0; j < lineLenght; j++) cout << '-';		// drawing
+		cout << endl;											// line
+		  
+		//login
+		cout << users[i].GetLogin();
+		for (int j = 0; j < loginMaxSize - users[i].GetLogin().size(); j++)
+		{
+			cout << " ";
+		}
+		cout << '|';
+
+		//name
+		cout << users[i].GetName(0) << " " << users[i].GetName(1) << " " << users[i].GetName(2);
+		for (int j = 0; j < nameMaxSize - users[i].GetFullName().size(); j++)
+		{
+			cout << " ";
+		}
+		cout << '|';
+
+		//group
+		cout << users[i].GetGroup();
+		for (int j = 0; j < groupMaxSize - users[i].GetGroup().size(); j++)
+		{
+			cout << " ";
+		}
+		cout << '|';
+
+		//avarageNumber
+		cout << users[i].getAvarageNumber();
+		for (int j = 0; j < avarageNumberMaxSize - to_string(int(users[i].getAvarageNumber())).size();  j++)
+		{
+			cout << " ";
+		}
+		cout << '|';
+
+		//password
+		if (admin)
+		{
+			cout << users[i].GetPass();
+			for (int j = 0; j < passwordMaxSize - users[i].GetPass().size(); j++)
+			{
+				cout << " ";
+			}
+			cout << '|';
+		}
+
+		//lessons
+		for (int j = 0; j < 5; j++)
+		{
+			string answer = " ";
+			int addSpace = 0;
+			if (users[i].getLesson(j))
+			{
+				answer = "yes";
+				addSpace = nameLessons[j].size() - 3;
+			}
+			else
+			{
+				answer = "no";
+				addSpace = nameLessons[j].size() - 2;
+			}
+
+			cout << answer;
+			addSpace++;
+			for (int i = 0; i < addSpace; i++) cout << ' ';
+			cout << '|';
+
+		}
+
+		//role
+		if (users[i].isAdmin()) cout << "admin|";
+		else cout << "user |";
+
+		cout << endl;
+	}
+
+	for (int j = 0; j < lineLenght; j++) cout << '-';
+	cout << endl;
+
+	/*cout << maxSize << endl;
+
+	int b = 90;
+
+	string a;
+	a = to_string(b);
+	cout << a << " " << a.length() << endl;*/
+
 }
 
 void Apps::ReadUsers(vector<User>& users, string way)
