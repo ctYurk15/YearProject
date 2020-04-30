@@ -285,7 +285,7 @@ void Apps::AddUser(vector<User>& users)
 	string fatherName = " ";
 	string pass = " ";
 	string group = " ";
-	float avarageNumber = 0;
+	float avarageNumber = -1;
 	bool goingLessons[5];
 	bool admin = false;
 
@@ -303,6 +303,11 @@ void Apps::AddUser(vector<User>& users)
 	cin >> group;
 	cout << "Avarage number: ";
 	avarageNumber = getInput();
+	while (avarageNumber <= 0 || avarageNumber > 100)
+	{
+		cout << "From 0 to 100 please: ";
+		avarageNumber = getInput();
+	}
 	for (int i = 0; i < 5; i++)
 	{
 		string boolString = " ";
